@@ -1,6 +1,6 @@
-import { observerMixin } from "./mixin.js"
+import { observerMixin } from './mixin.js'
 
-class TodoItem {
+export class TodoItem {
   constructor(text) {
     this.text = text
   }
