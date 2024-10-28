@@ -1,13 +1,13 @@
 // Mixin that will implement Observer pattern
 export const observerMixin = {
   observers: new Set(),
-  addObserver: (observer) => {
+  addObserver(observer) {
     this.observers.add(observer)
   },
-  removeObserver: (observer) => {
+  removeObserver(observer) {
     this.observers.delete(observer)
   },
-  notify: () => {
-    this.observers.forEach((observer) => observer());
+  notify() {
+    this.observers.forEach((observer) => observer())
   }
 }
