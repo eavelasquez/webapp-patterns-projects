@@ -1,3 +1,4 @@
+import { TodoHistory } from './memento.js'
 import { TodoItem, TodoList } from './classes.js'
 
 export class Command {
@@ -12,7 +13,8 @@ export class Command {
 
 export const Commands = {
   ADD: 'add',
-  DELETE: 'delete'
+  DELETE: 'delete',
+  UNDO: 'undo'
 }
 
 // Singleton pattern as an object literal
@@ -34,6 +36,12 @@ export const CommandExecutor = {
       case Commands.DELETE:
         const [textToDelete] = command.args
         todoList.delete(textToDelete)
+        break
+      case Commands.UNDO:
+        const previousList = TodoHistory.pop()
+        if (previousList) {
+          todoList.replaceList(previousList)
+        }
         break
     }
   }
