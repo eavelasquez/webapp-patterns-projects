@@ -25,7 +25,7 @@ document.addEventListener('DOMContentLoaded', () => {
     DOM.addBtn = document.getElementById('add-btn')
     DOM.todoInput = document.getElementById('todo-input')
 
-    DOM.addBtn.addEventListener('click', (event) => {
+    DOM.addBtn.addEventListener('click', (_event) => {
         const cmd = new Command(Commands.ADD)
         CommandExecutor.execute(cmd)
     })
@@ -46,4 +46,12 @@ document.addEventListener('DOMContentLoaded', () => {
 // Data persistence
 document.addEventListener('DOMContentLoaded', () => {
     LocalStorage.load()
+})
+
+document.addEventListener('keydown', (event) => {
+    if (event.ctrlKey && event.key === 'p') {
+        event.preventDefault()
+        const cmd = new Command(Commands.ADD)
+        CommandExecutor.execute(cmd)
+    }
 })
